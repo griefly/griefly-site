@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ROOT=/srv/http/griefly
+
+main() {
+    URL="$1"
+    TMPDIR=`mktemp -d`
+
+    cd $TMPDIR
+
+    git clone "$URL" . || exit 1
+    
+    rm -rf $ROOT/*
+    cp -a www-root/* $ROOT
+
+    cd / && rm -r $TMPDIR
+}
+
+main "$@" > /dev/null

@@ -1,0 +1,10 @@
+[Unit]
+Description=Webhook updater for grief.ly
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/webhooker -p 3456 -i 127.0.0.1 kremius/griefly-site:master='/usr/local/bin/update-griefly $REPO_URL'
+User=griefly
+
+[Install]
+WantedBy=multi-user.target
